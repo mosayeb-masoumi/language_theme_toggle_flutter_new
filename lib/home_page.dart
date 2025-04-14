@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:language_theme_toggle_flutter/blocs/language/language_cubit.dart';
+import 'package:language_theme_toggle_flutter/blocs/theme/theme_cubit.dart';
 import 'package:language_theme_toggle_flutter/language/app_language.dart';
 import 'package:language_theme_toggle_flutter/language/app_localizations.dart';
 import 'package:language_theme_toggle_flutter/second_page.dart';
@@ -17,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    // var appLanguage = Provider.of<AppLanguage>(context);
-    // var ss = AppLocalizations.of(context)!.locale;  to get the local language
+
+
 
     return Scaffold(
       backgroundColor: AppColors.primaryColor(context),
@@ -35,27 +37,16 @@ class _HomePageState extends State<HomePage> {
           Text(AppLocalizations.of(context)!.translate('message')),
 
           const SizedBox(height: 20,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
 
-              ElevatedButton(onPressed: (){
-                // appLanguage.changeLanguage(const Locale("fa"));
-                context.read<AppLanguage>().changeLanguage(const Locale("fa"));
-
-              }, child: const Text("Persian")),
-              const SizedBox(width: 10,),
-              ElevatedButton(onPressed: (){
-                // appLanguage.changeLanguage(const Locale("en"));
-                context.read<AppLanguage>().changeLanguage(const Locale("en"));
-              }, child: const Text("English")),
-
-            ],
-          ),
+          ElevatedButton(onPressed: (){
+            // appLanguage.changeLanguage(const Locale("en"));
+            context.read<LanguageCubit>().toggleLanguage();
+          }, child: const Text("Toggle language")),
 
 
           ElevatedButton(onPressed: (){
-            context.read<ThemeProvider>().toggleTheme();
+            context.read<ThemeCubit>().toggleTheme(); // Trigger theme togg
+
           }, child: const Text("Toggle Theme")),
 
 

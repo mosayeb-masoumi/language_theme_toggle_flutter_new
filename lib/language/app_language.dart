@@ -4,7 +4,7 @@ import 'package:language_theme_toggle_flutter/pref/share_pref.dart';
 // import 'package:language_theme_toggle_flutter/pref/share_pref.dart';
 
 
-class AppLanguage extends ChangeNotifier {
+class AppLanguage {
   Locale _appLocale =  Locale(Prefs.getLanguageCode());
   Locale get appLocal => _appLocale;
 
@@ -19,6 +19,6 @@ class AppLanguage extends ChangeNotifier {
       await Prefs.setLanguageCode("en");
       await Prefs.setCountryCode("US");
     }
-    notifyListeners();
+
   }
 }

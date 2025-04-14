@@ -26,10 +26,13 @@ class Prefs {
   // get && set theme mode
   static Future<bool> setThemeMode(ThemeMode themeMode) async =>
       await _prefs!.setInt("ThemeMode", themeMode.index);
+
   static ThemeMode getThemeMode() {
     final int? themeModeIndex = _prefs!.getInt("ThemeMode");
+
     return themeModeIndex != null && themeModeIndex < ThemeMode.values.length
         ? ThemeMode.values[themeModeIndex]
-        : ThemeMode.system;
+        : ThemeMode.light;
+        // : ThemeMode.system;
   }
 }
